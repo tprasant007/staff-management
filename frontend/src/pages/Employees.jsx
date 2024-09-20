@@ -11,12 +11,10 @@ const Employees = () => {
     const getEmployees = async () => {
       const response = await fetch("http://localhost:8000/api/employee");
       const json = await response.json();
-      console.log(json);
 
       if (response.ok) {
         // update local state
         dispatch({ type: "SET_EMPLOYEE", payload: json });
-        console.log("ok");
       } else console.log("error");
     };
     getEmployees();
@@ -28,7 +26,7 @@ const Employees = () => {
   };
 
   return (
-    <div>
+    <div className="main">
       <button onClick={toggleForm}>{!showForm ? "Add new employee" : "Cancel"}</button>
       {employees &&
         employees.map((employee) => (

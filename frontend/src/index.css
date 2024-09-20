@@ -21,6 +21,10 @@ body{
     margin-right: 10px;
     text-decoration: none;
 }
+.main {
+    max-width: 1000px;
+    margin: 15px auto;
+}
 
 /* employee detail */
 
@@ -29,23 +33,31 @@ body{
 }
 
 /* tables */
-.schedules {
-    width: 600px;
-    margin: 15px auto;
-}
 
 table, th, td {
-    border: 1px solid black;
+    border: unset;
 }
 
 table{
     border-collapse: collapse;
+    text-align: left;
 }
 
 th, td{
-    width: 100px;
+    padding: 1rem;
+    width: 8rem;
 }
 
+th{
+    background-color: #5469d4;
+    color: #fff;
+}
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+tr:nth-child(odd) {
+    background-color: #e0e0e0;
+}
 /* form for edit and delete employee */
 
 form.employee-form{

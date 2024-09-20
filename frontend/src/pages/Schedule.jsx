@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import ScheduleForm from "../components/ScheduleForm";
+import ScheduleDetail from "../components/ScheduleDetail";
 
 const Schedule = () => {
   const [schedule, setSchedule] = useState("");
@@ -10,15 +12,14 @@ const Schedule = () => {
       const json = await response.json();
 
       if (response.ok) {
-        console.log(json)
+        setSchedule(json)
       }
     };
     getSchedule();
   }, []);
   return (
-    <div>
-      schedule
-      <p>{id}</p>
+    <div className="main">
+        <ScheduleDetail schedule={schedule}/>
     </div>
   );
 };

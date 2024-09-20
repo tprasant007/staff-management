@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useScheduleContext from "../hooks/useScheduleContext";
-import ScheduleDetail from "../components/ScheduleDetail";
+import SchedulesDetail from "../components/SchedulesDetail";
 import ScheduleForm from "../components/ScheduleForm";
 
 const Dashboard = () => {
@@ -12,10 +12,9 @@ const Dashboard = () => {
       const json = await responese.json();
 
       if (responese.ok) {
-        console.log("ok")
-        // update local state
+
+        // update global context
         dispatch({ type: "SET_SCHEDULE", payload: json });
-        console.log(schedules);
       }
     };
 
@@ -23,7 +22,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="schedules">
+    <div className="main">
       <table>
         <thead>
           <tr>
@@ -40,11 +39,10 @@ const Dashboard = () => {
         <tbody>
           {schedules &&
             schedules.map((schedule) => (
-              <ScheduleDetail key={schedule._id} schedule={schedule} />
+              <SchedulesDetail key={schedule._id} schedule={schedule} />
             ))}
         </tbody>
       </table>
-      <ScheduleForm />
     </div>
   );
 };
