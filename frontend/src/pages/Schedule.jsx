@@ -1,50 +1,24 @@
-import { useEffect } from "react";
-import useScheduleContext from "../hooks/useScheduleContext";
-import ScheduleDetail from "../components/ScheduleDetail";
-import ScheduleForm from "../components/ScheduleForm";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const Schedule = () => {
-  const { schedules, dispatch } = useScheduleContext();
-
+  const [schedule, setSchedule] = useState("");
+  const { id } = useParams();
   useEffect(() => {
     const getSchedule = async () => {
-      const responese = await fetch("http://localhost:8000/api/schedule");
-      const json = await responese.json();
+      const response = await fetch(`http://localhost:8000/api/schedule/${id}`);
+      const json = await response.json();
 
-      if (responese.ok) {
-        console.log("ok")
-        // update local state
-        dispatch({ type: "SET_SCHEDULE", payload: json });
-        console.log(schedules);
+      if (response.ok) {
+        console.log(json)
       }
     };
-
     getSchedule();
   }, []);
-
   return (
-    <div className="schedules">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedules &&
-            schedules.map((schedule) => (
-              <ScheduleDetail key={schedule._id} schedule={schedule} />
-            ))}
-        </tbody>
-      </table>
-      <ScheduleForm />
+    <div>
+      schedule
+      <p>{id}</p>
     </div>
   );
 };
