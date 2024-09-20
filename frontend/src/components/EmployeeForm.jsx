@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useEmployeeContext from "../hooks/useEmployeeContext";
 
-const EmployeeForm = () => {
+const EmployeeForm = ({toggleForm}) => {
   const { dispatch } = useEmployeeContext();
   const [formData, setFormData] = useState({
     name: "",
@@ -28,7 +28,7 @@ const EmployeeForm = () => {
     const json = await response.json();
     console.log(json);
     if (response.ok) {
-      // update local state
+      // update global context
       dispatch({ type: "CREATE_EMPLOYEE", payload: json });
       // reset form data
       setFormData({
@@ -36,6 +36,8 @@ const EmployeeForm = () => {
         employeeId: "",
         email: "",
       });
+      // hide form
+      toggleForm();
     }
   };
   return (
@@ -67,11 +69,7 @@ const EmployeeForm = () => {
           value={formData.email} // Set value to formData.email
           onChange={handleChange} // Handle change
         />
-
-        <div className="btn-container">
-          <button>Submit</button>
-          <button>Cancel</button>
-        </div>
+        <button>Submit</button>
       </form>
     </div>
   );
