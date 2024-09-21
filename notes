@@ -1,3 +1,5 @@
 when edit, delete in employees page, create functions
 
 handle error in employee add form
+---
+in scheduleForm, even the default value in select is AM, the formData is making request as empty, fix it

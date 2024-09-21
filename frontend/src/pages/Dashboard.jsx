@@ -15,6 +15,8 @@ const Dashboard = () => {
 
         // update global context
         dispatch({ type: "SET_SCHEDULE", payload: json });
+        // save to sessionStorage to reuse
+        sessionStorage.setItem("employee", JSON.stringify(json));
       }
     };
 

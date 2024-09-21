@@ -4,26 +4,42 @@ import ScheduleForm from "../components/ScheduleForm";
 import ScheduleDetail from "../components/ScheduleDetail";
 
 const Schedule = () => {
-  const [schedule, setSchedule] = useState("");
-  const [error, setError] = useState("");
   const { id } = useParams();
+
+  const [schedule, setSchedule] = useState("");
+
   useEffect(() => {
     const getSchedule = async () => {
-      const response = await fetch(`http://localhost:8000/api/schedule/${id}`);
-      const json = await response.json();
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/schedule/${id}`
+        );
 
-      if (!response.ok) {
-        setError("Could not find schedule for the employee");
-      } else if (response.ok) {
+        if (!response.ok) {
+          throw new Error("Could not find schedule for the employee");
+        }
+
+        const json = await response.json();
         setSchedule(json);
         setError("");
+      } catch (err) {
+        console.log(err)
       }
     };
+
     getSchedule();
-  }, []);
+  }, [id]);
+
+  if (schedule) {
+    return (
+      <div className="main">
+        <ScheduleDetail schedule={schedule} />
+      </div>
+    );
+  }
   return (
     <div className="main">
-      <ScheduleDetail schedule={schedule} error={error} />
+      <ScheduleForm />
     </div>
   );
 };

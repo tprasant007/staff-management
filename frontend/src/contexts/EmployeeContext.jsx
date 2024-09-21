@@ -27,10 +27,13 @@ export const employeeReducer = (state, action) => {
   }
 };
 
+
+
 const EmployeeContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(employeeReducer, {
     employees: [],
   });
+  
   return (
     <EmployeeContext.Provider value={{ ...state, dispatch }}>
       {children}
