@@ -1,20 +1,22 @@
 import { useState } from "react";
 import ScheduleForm from "./ScheduleForm";
+import useScheduleContext from "../hooks/useScheduleContext";
 
-const ScheduleDetail = ({ schedule }) => {
-  console.log(schedule);
+const ScheduleDetail = ({ employeeSchedule }) => {
+  const {dispatch} = useScheduleContext();
   const [isEditing, setIsEditing] = useState(false);
 
   const [formData, setFormData] = useState({
-    Monday: schedule.Monday,
-    Tuesday: schedule.Tuesday,
-    Wednesday: schedule.Wednesday,
-    Thursday: schedule.Thursday,
-    Friday: schedule.Friday,
-    Saturday: schedule.Saturday,
-    Sunday: schedule.Sunday,
+    Monday: employeeSchedule.Monday,
+    Tuesday: employeeSchedule.Tuesday,
+    Wednesday: employeeSchedule.Wednesday,
+    Thursday: employeeSchedule.Thursday,
+    Friday: employeeSchedule.Friday,
+    Saturday: employeeSchedule.Saturday,
+    Sunday: employeeSchedule.Sunday,
   });
 
+  // form onChange handler
   const handleChange = (day, e) => {
     setFormData({
       ...formData,
@@ -22,10 +24,32 @@ const ScheduleDetail = ({ schedule }) => {
     });
   };
 
+  // edit button handler
   const toggleEdit = () => {
     setIsEditing(!isEditing)
   }
 
+  // form submit handler
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    const response = await fetch(`http://localhost:8000/api/schedule/${employeeSchedule.name}`, {
+      method: "PATCH",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    const json = await response.json();
+
+    if(response.ok) {
+      // update schedule context
+      dispatch({type: "UPDATE_SCHEDULE", payload: json});
+      console.log(json)
+
+      // disable edit mode
+      setIsEditing(false)
+    }
+  }
   // create array of days
   const days = Object.keys(formData);
 
@@ -49,9 +73,12 @@ const ScheduleDetail = ({ schedule }) => {
 
   return (
     <div className="schedule-detail">
-      <h2>{schedule.name}</h2>
+      <h2>{employeeSchedule.name}</h2>
       <button onClick={toggleEdit}>Change schedule</button>
-      <form>{daysFieldset}</form>
+      <form onSubmit={handleSubmit}>
+        {daysFieldset}
+        <button>Submit</button>
+      </form>
     </div>
   );
 };

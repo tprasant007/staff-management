@@ -1,6 +1,10 @@
 import { useState } from "react";
+import useScheduleContext from "../hooks/useScheduleContext";
+import { useNavigate } from "react-router";
 
 const ScheduleForm = ({ employeeName }) => {
+  const navigate = useNavigate();
+  const { dispatch } = useScheduleContext();
   const [formData, setFormData] = useState({
     Monday: "",
     Tuesday: "",
@@ -20,20 +24,24 @@ const ScheduleForm = ({ employeeName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
+    console.log(formData);
     const response = await fetch("http://localhost:8000/api/schedule", {
       method: "POST",
-      body: JSON.stringify({name: employeeName, ...formData}),
+      body: JSON.stringify({ name: employeeName, ...formData }), //sending name with forms
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const json = response.json()
+    const json = response.json();
 
-    if(response.ok){
-      console.log("ok done")
-    } else{
-      console.log("bhayena bro")
+    if (response.ok) {
+      console.log("ok done");
+      // update schedules context
+      dispatch({ type: "CREATE_SCHEDULE", payload: json });
+      // navigate to dashboard
+      navigate("/");
+    } else {
+      console.log("bhayena bro");
     }
   };
 
@@ -49,7 +57,8 @@ const ScheduleForm = ({ employeeName }) => {
         id={day}
         value={formData[day]}
         onChange={(e) => handleChange(day, e)}
-      > 
+      >
+        <option value="">--select--</option>
         <option value="AM">AM</option>
         <option value="PM">PM</option>
         <option value="Dayoff">Dayoff</option>

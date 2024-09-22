@@ -39,7 +39,7 @@ const EmployeeEditForm = ({ employee, handleEditToggle, isEditing }) => {
   return (
     <>
       {isEditing && (
-        <div >
+        <div>
           <form onSubmit={handleSubmit} className="employee-form">
             <input
               type="text"
@@ -63,10 +63,10 @@ const EmployeeEditForm = ({ employee, handleEditToggle, isEditing }) => {
               required
             />
             <div className="btn-container">
-                <button type="submit">Save</button>
-                <button type="button" onClick={handleEditToggle}>
-                  Cancel
-                </button>
+              <button type="submit">Save</button>
+              <button type="button" onClick={handleEditToggle}>
+                Cancel
+              </button>
             </div>
           </form>
         </div>

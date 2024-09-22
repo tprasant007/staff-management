@@ -19,7 +19,7 @@ const deleteEmployee = async (req, res) => {
   const { id } = req.params;
   // id validation
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such workout" });
+    return res.status(404).json({ error: "No such employee" });
   }
   const employee = await Employee.findByIdAndDelete(id);
   res.status(200).json(employee);
