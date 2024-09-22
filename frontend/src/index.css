@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #5469d4;
+  --error: #e7195a;
+}
+
 body {
   font-family: "lato", sans-serif;
   background-color: #f2f2f2;
@@ -20,23 +25,69 @@ a:visited {
 }
 
 .navbar {
-  padding: 40px;
-  background-color: #0f0e0e;
+  background-color: var(--primary);
   color: #fff;
+  width: 100%;
+  padding: 2rem 1rem;
 }
 
 .navbar a {
-  margin-right: 10px;
+  margin: 2rem;
+  font-size: 1.4rem;
 }
-.main {
-  max-width: 1000px;
+
+/* dashboard */
+.dashboard,
+.employees,
+.sch-dtl {
+  max-width: 65rem;
   margin: 15px auto;
+}
+.dashboard h2 {
+  text-align: center;
+}
+.dashboard a {
+  text-decoration: underline;
+}
+
+/* employees */
+.employees {
+  display: flex;
+  justify-content: space-around;
+}
+
+.new-employee {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  align-items: center;
+}
+
+.emp-btn {
+  margin: 1rem;
 }
 
 /* employee detail */
 
-.employee-detail {
-  margin: 10px auto;
+.emp-detail {
+  margin: 1rem;
+  padding: 1rem;
+  min-width: 448px;
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 1.5rem;
+  padding-bottom: 7px;
+}
+p {
+  font-size: 1.1rem;
+  padding-bottom: 7px;
+}
+.emp-detail a {
+  text-decoration: underline;
 }
 
 /* tables */
@@ -53,13 +104,16 @@ table {
 }
 
 th,
-td, fieldset label, fieldset input {
+td,
+fieldset label,
+fieldset input {
   padding: 1rem;
   width: 8rem;
 }
 
-th, fieldset label {
-  background-color: #5469d4;
+th,
+fieldset label {
+  background-color: var(--primary);
   color: #fff;
 }
 tr:nth-child(even) {
@@ -88,22 +142,19 @@ button {
   font-family: inherit;
   padding: 8px 14px;
   font-size: 16px;
-  background-color: #5469d4;
+  background-color: var(--primary);
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .btn-container {
+  width: 100%;
   display: flex;
   margin: 10px 0;
+  justify-content: space-between;
 }
-.btn-container button {
-  margin: 0 40px;
-}
-
 /* form elements */
 
 input,
@@ -133,16 +184,34 @@ select:disabled {
 }
 
 /* schedule detail */
-.schedule-detail form{
-    margin-top: 1rem;
-    display: flex;
+.sch-dtl > div {
+  width: 60rem;
+  padding: 0.5rem 2rem;
+  margin: 0 auto;
 }
-fieldset{
-    display: flex;
-    flex-direction: column;
-    border: none;
+.sch-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-fieldset label{
-    border-radius: 0;
-    margin: 0;
+
+.sch-form div {
+  margin: 1rem 0;
+  display: flex;
+}
+fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+fieldset label {
+  border-radius: 0;
+  margin: 0;
+}
+
+
+/* errors */
+
+.error{
+  color: #e7195a;
 }

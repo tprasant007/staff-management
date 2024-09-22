@@ -5,7 +5,6 @@ const Navbar = () => {
         <div className="navbar">
             <Link to={"/"}>Dashboard</Link>
             <Link to={"/employees"}>Employees</Link>
-            <Link to={"/schedule"}>Schedule</Link>
         </div>
      );
 }

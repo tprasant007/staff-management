@@ -41,7 +41,6 @@ const ScheduleForm = ({ employeeName }) => {
       // navigate to dashboard
       navigate("/");
     } else {
-      console.log("bhayena bro");
     }
   };
 
@@ -57,6 +56,7 @@ const ScheduleForm = ({ employeeName }) => {
         id={day}
         value={formData[day]}
         onChange={(e) => handleChange(day, e)}
+        required
       >
         <option value="">--select--</option>
         <option value="AM">AM</option>
@@ -67,12 +67,15 @@ const ScheduleForm = ({ employeeName }) => {
   ));
 
   return (
-    <div className="schedule-detail">
+    <div>
       <h3>{`Could not find schdeule of ${employeeName}.`}</h3>
       <p>Create schedule using form below.</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="sch-form">
+        <div>
+
         {daysFieldset}
-        <button>Sumbmit</button>
+        </div>
+        <button>Submit</button>
       </form>
     </div>
   );

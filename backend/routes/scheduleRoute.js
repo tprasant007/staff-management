@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/", getSchedules);
 router.post("/", postSchedule);
-router.patch("/:name", updateSchedule);
+router.patch("/:id", updateSchedule);
 
 module.exports = router;

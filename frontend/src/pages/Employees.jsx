@@ -13,7 +13,7 @@ const Employees = () => {
       const json = await response.json();
 
       if (response.ok) {
-        // update local state
+        // set employee context
         dispatch({ type: "SET_EMPLOYEE", payload: json });
       } else console.log("error");
     };
@@ -26,13 +26,20 @@ const Employees = () => {
   };
 
   return (
-    <div className="main">
-      <button onClick={toggleForm}>{!showForm ? "Add new employee" : "Cancel"}</button>
-      {employees &&
-        employees.map((employee) => (
-          <EmployeeDetail key={employee._id} employee={employee} />
-        ))}
-      {showForm && <EmployeeForm toggleForm={toggleForm}/>}
+    <div className="employees">
+      <div className="emp-container">
+        {employees &&
+          employees.map((employee) => (
+            <EmployeeDetail key={employee._id} employee={employee} />
+          ))}
+      </div>
+
+      <div className="new-employee">
+        <button className="emp-btn" onClick={toggleForm}>
+          {!showForm ? "Add new employee" : "Cancel"}
+        </button>
+        {showForm && <EmployeeForm toggleForm={toggleForm} />}
+      </div>
     </div>
   );
 };

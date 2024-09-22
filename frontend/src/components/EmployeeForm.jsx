@@ -8,6 +8,7 @@ const EmployeeForm = ({toggleForm}) => {
     employeeId: "",
     email: "",
   });
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,7 +27,11 @@ const EmployeeForm = ({toggleForm}) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+
+    if(!response.ok){
+      setError(json.error)
+    }
+
     if (response.ok) {
       // update global context
       dispatch({ type: "CREATE_EMPLOYEE", payload: json });
@@ -36,12 +41,14 @@ const EmployeeForm = ({toggleForm}) => {
         employeeId: "",
         email: "",
       });
+      // set error to false
+      setError(false);
       // hide form
       toggleForm();
     }
   };
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className="employee-form">
         <label htmlFor="name">Name: </label>
         <input
@@ -69,9 +76,10 @@ const EmployeeForm = ({toggleForm}) => {
           value={formData.email} // Set value to formData.email
           onChange={handleChange} // Handle change
         />
-        <button>Submit</button>
+        <button className="emp-btn">Submit</button>
+        {error && <p className="error">{error}</p>}
       </form>
-    </div>
+    </>
   );
 };
 

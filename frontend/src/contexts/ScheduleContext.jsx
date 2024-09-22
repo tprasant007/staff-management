@@ -15,9 +15,13 @@ export const scheduleReducer = (state, action) => {
     case "UPDATE_SCHEDULE":
       return {
         schedules: state.schedules.map((schedule) =>
-          schedule.name === action.payload.name ? action.payload : schedule
+          schedule._id === action.payload._id ? action.payload : schedule
         ),
       };
+      case "DELETE_SCHEDULE":
+        return {
+          schedules: state.schedules.filter(schedule => schedule._id !== action.payload)
+        }
     default:
       return state;
   }
@@ -25,7 +29,7 @@ export const scheduleReducer = (state, action) => {
 
 const ScheduleContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(scheduleReducer, {
-    schedules: null,
+    schedules: [],
   });
 
   useEffect(() => {

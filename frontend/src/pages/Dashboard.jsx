@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import useScheduleContext from "../hooks/useScheduleContext";
 import SchedulesDetail from "../components/SchedulesDetail";
-import ScheduleForm from "../components/ScheduleForm";
 
 const Dashboard = () => {
   const { schedules, dispatch } = useScheduleContext();
@@ -12,7 +13,7 @@ const Dashboard = () => {
       const json = await responese.json();
 
       if (responese.ok) {
-        // update global context
+        // set schedule context
         dispatch({ type: "SET_SCHEDULE", payload: json });
       }
     };
@@ -20,8 +21,18 @@ const Dashboard = () => {
     getSchedules();
   }, []);
 
+  if (schedules && schedules.length == 0) { //if there are no employees
+    return (
+      <div className="dashboard">
+        <h2>
+          Add some <Link to="/employees">employees</Link> to create schedules
+        </h2>
+      </div>
+    );
+  }
+
   return (
-    <div className="main">
+    <div className="dashboard">
       <table>
         <thead>
           <tr>
