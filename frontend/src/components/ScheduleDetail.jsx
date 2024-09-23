@@ -47,7 +47,6 @@ const ScheduleDetail = ({ employeeSchedule }) => {
     if (response.ok) {
       // update schedule context
       dispatch({ type: "UPDATE_SCHEDULE", payload: json });
-      console.log(json);
 
       // disable edit mode
       setIsEditing(false);

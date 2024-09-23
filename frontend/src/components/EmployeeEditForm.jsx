@@ -31,6 +31,7 @@ const EmployeeEditForm = ({ employee, handleEditToggle, isEditing }) => {
     const json = await response.json();
 
     if (response.ok) {
+      // update employee context
       dispatch({ type: "UPDATE_EMPLOYEE", payload: json });
       handleEditToggle();
     }

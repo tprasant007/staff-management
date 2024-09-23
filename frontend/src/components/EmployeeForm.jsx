@@ -10,6 +10,7 @@ const EmployeeForm = ({toggleForm}) => {
   });
   const [error, setError] = useState(false);
 
+  // on change handler for form data
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -53,28 +54,28 @@ const EmployeeForm = ({toggleForm}) => {
         <label htmlFor="name">Name: </label>
         <input
           type="text"
-          name="name" // Add name attribute
+          name="name"
           id="name"
-          value={formData.name} // Set value to formData.name
-          onChange={handleChange} // Handle change
+          value={formData.name}
+          onChange={handleChange} 
         />
 
         <label htmlFor="id">Employee ID:</label>
         <input
           type="text"
-          name="employeeId" // Add name attribute
+          name="employeeId"
           id="id"
-          value={formData.employeeId} // Set value to formData.id
-          onChange={handleChange} // Handle change
+          value={formData.employeeId}
+          onChange={handleChange}
         />
 
         <label htmlFor="email">Email:</label>
         <input
           type="email"
-          name="email" // Add name attribute
+          name="email"
           id="email"
-          value={formData.email} // Set value to formData.email
-          onChange={handleChange} // Handle change
+          value={formData.email}
+          onChange={handleChange}
         />
         <button className="emp-btn">Submit</button>
         {error && <p className="error">{error}</p>}

@@ -3,7 +3,6 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require('cors');
 
-const adminRoute = require("./routes/adminRoute");
 const employeeRoute = require("./routes/employeeRoute");
 const scheduleRoute = require("./routes/scheduleRoute");
 
@@ -14,7 +13,6 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-app.use("/api/admin", adminRoute);
 app.use("/api/employee", employeeRoute);
 app.use("/api/schedule", scheduleRoute);
 

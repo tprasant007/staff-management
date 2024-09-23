@@ -1,7 +1,8 @@
 import { useState } from "react";
-import useEmployeeContext from "../hooks/useEmployeeContext";
-import EmployeeEditForm from "./EmployeeEditForm";
 import { Link } from "react-router-dom";
+
+import EmployeeEditForm from "./EmployeeEditForm";
+import useEmployeeContext from "../hooks/useEmployeeContext";
 import useScheduleContext from "../hooks/useScheduleContext";
 
 const EmployeeDetail = ({ employee }) => {
@@ -36,7 +37,6 @@ const EmployeeDetail = ({ employee }) => {
           payload: json.schedule._id,
         });
       }
-      console.log(json);
     }
   };
 

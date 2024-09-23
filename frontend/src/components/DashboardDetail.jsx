@@ -1,4 +1,4 @@
-const SchedulesDetail = ({ schedule }) => {
+const DashboardDetail = ({ schedule }) => {
   const {
     name,
     Monday,
@@ -23,4 +23,4 @@ const SchedulesDetail = ({ schedule }) => {
   );
 };
 
-export default SchedulesDetail;
+export default DashboardDetail;

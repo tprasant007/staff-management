@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import useScheduleContext from "../hooks/useScheduleContext";
-import SchedulesDetail from "../components/SchedulesDetail";
+import DashboardDetail from "../components/DashboardDetail";
 
 const Dashboard = () => {
   const { schedules, dispatch } = useScheduleContext();
@@ -21,7 +21,7 @@ const Dashboard = () => {
     getSchedules();
   }, []);
 
-  if (schedules && schedules.length == 0) { //if there are no employees
+  if (schedules && schedules.length == 0) { //if there are no schedules
     return (
       <div className="dashboard">
         <h2>
@@ -49,7 +49,7 @@ const Dashboard = () => {
         <tbody>
           {schedules &&
             schedules.map((schedule) => (
-              <SchedulesDetail key={schedule._id} schedule={schedule} />
+              <DashboardDetail key={schedule._id} schedule={schedule} />
             ))}
         </tbody>
       </table>

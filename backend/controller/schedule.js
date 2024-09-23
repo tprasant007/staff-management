@@ -1,4 +1,6 @@
+const mongoose = require("mongoose");
 const Schedule = require("../model/scheduleModel");
+
 
 // get all schedules
 const getSchedules = async (req, res) => {
