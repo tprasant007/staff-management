@@ -67,6 +67,7 @@ a:visited {
   margin: 1rem;
 }
 
+
 /* employee detail */
 
 .emp-detail {
@@ -89,6 +90,8 @@ p {
 .emp-detail a {
   text-decoration: underline;
 }
+
+
 
 /* tables */
 
@@ -213,3 +216,25 @@ fieldset input {
 .error {
   color: #e7195a;
 }
+
+
+/* mobile view */
+@media (max-width: 480px) {
+  
+  .dashboard,
+  .sch-dtl {
+    margin: 10px;
+    overflow-x: scroll;
+  }
+  
+  .employees {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .emp-detail {
+    min-width: 0;
+    width: 350px;
+  }
+
+  }

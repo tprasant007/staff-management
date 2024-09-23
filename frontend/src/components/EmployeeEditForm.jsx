@@ -47,6 +47,7 @@ const EmployeeEditForm = ({ employee, handleEditToggle, isEditing }) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              disabled
               required
             />
             <input
