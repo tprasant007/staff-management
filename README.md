@@ -44,6 +44,11 @@ This is a MERN stack application that helps care home managers manage employee s
    open the browser and navigate to following url to view application<br />
    http://localhost:5173/<br />
 
+   There are 2 pages: Dashboard and Employees<br />
+   Dashboard displays all the employees name and their schedule<br />
+   Employees displays all employees' detail and new employee and schedule can be added from this page<br />
+   Employees details can be updated from this page and by clicking the link "view schedule", employees' schedule page opens, where new schedule can be added if there is none and schedule can be updated as well.
+
 ## API Endpoints
   GET /api/employees - Get all employees<br />
   POST /api/employees - Add a new employee<br />
